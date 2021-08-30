@@ -17,13 +17,13 @@ public class SessionFactoryUtil {
 	}
 	static {
 		try {
-			System.out.println("SF INIT STRATED");
+			System.out.println("SessionFactory STRATED");
 			Configuration config = new Configuration().configure();
 			factory=config.buildSessionFactory();
-			System.out.println("SF ERROR IN STATIC BLOCK");
+			System.out.println("SessionFactory COMPLETED");
 		}
 		catch(HibernateException e) {
-			System.out.println("SF ERROR IN STATIC BLOCK");
+			System.out.println("SessionFactory ERROR IN STATIC BLOCK");
 			e.printStackTrace();
 		}
 	}
