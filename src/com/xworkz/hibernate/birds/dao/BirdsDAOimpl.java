@@ -6,6 +6,7 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
 import com.xworkz.hibernate.birds.entity.BirdsEntity;
+import com.xworkz.hibernate.birds.util.SessionFactoryUtil;
 
 public class BirdsDAOimpl implements BirdsDAO {
 
@@ -13,30 +14,53 @@ public class BirdsDAOimpl implements BirdsDAO {
 
 	@Override
 	public int save(BirdsEntity entity) {
-		Configuration conf = new Configuration();
-		conf.configure().addAnnotatedClass(BirdsEntity.class);
-		SessionFactory factory = conf.buildSessionFactory();
+		
+		SessionFactory factory = SessionFactoryUtil.getFactory();
 		Session session = factory.openSession();
 		Transaction transaction = session.beginTransaction();
 		int primaryKey = (int) session.save(entity);
 		transaction.commit();
 		System.out.println("save :" + primaryKey);
 		session.close();
-		factory.close();
 		return primaryKey;
 	}
 
 	@Override
 	public BirdsEntity readbyID(int primaryKey) {
-		Configuration conf = new Configuration();
-		conf.configure().addAnnotatedClass(BirdsEntity.class);
-		SessionFactory factory = conf.buildSessionFactory();
+		
+		SessionFactory factory = SessionFactoryUtil.getFactory();
 		Session session = factory.openSession();
 		BirdsEntity db =session.get(BirdsEntity.class, primaryKey);
 		System.out.println("Read by id :" + birds);
 		session.close();
-		factory.close();
 		return db;
+	}
+
+	@Override
+	public void updatebyNameById(int id, String name) {
+		SessionFactory factory = SessionFactoryUtil.getFactory();
+		Session session = factory.openSession();
+		Transaction tr = session.beginTransaction();
+		BirdsEntity dto = new BirdsEntity();
+		dto = (BirdsEntity) session.get(BirdsEntity.class, id);
+		dto.setName("kiwi");
+		session.update(dto);
+		session.getTransaction().commit();
+		System.out.println("updated name : " + name);
+		session.close();
+	}
+
+	@Override
+	public void deleteById(int id) {
+		SessionFactory factory = SessionFactoryUtil.getFactory();
+		Session session = factory.openSession();
+		Transaction tr = session.beginTransaction();
+		BirdsEntity dto = new BirdsEntity();
+		dto = (BirdsEntity) session.get(BirdsEntity.class, id);
+		session.delete(dto);
+		session.getTransaction();
+		System.out.println("deleted :" +id);
+		session.close();
 	}
 
 }

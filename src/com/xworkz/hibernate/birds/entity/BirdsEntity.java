@@ -31,7 +31,7 @@ public class BirdsEntity implements Serializable {
 	@Column(name = "b_sound")
 	private String sound;
 
-	BirdsEntity() {
+	public BirdsEntity() {
 
 	}
 
