@@ -43,7 +43,7 @@ public class BirdsDAOimpl implements BirdsDAO {
 		Transaction tr = session.beginTransaction();
 		BirdsEntity dto = new BirdsEntity();
 		dto = (BirdsEntity) session.get(BirdsEntity.class, id);
-		dto.setName("kiwi");
+		dto.setName(name);
 		session.update(dto);
 		session.getTransaction().commit();
 		System.out.println("updated name : " + name);
