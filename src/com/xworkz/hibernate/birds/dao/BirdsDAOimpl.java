@@ -40,11 +40,11 @@ public class BirdsDAOimpl implements BirdsDAO {
 	public void updatebyNameById(int id, String name) {
 		SessionFactory factory = SessionFactoryUtil.getFactory();
 		Session session = factory.openSession();
-		Transaction tr = session.beginTransaction();
-		BirdsEntity dto = new BirdsEntity();
-		dto = (BirdsEntity) session.get(BirdsEntity.class, id);
-		dto.setName(name);
-		session.update(dto);
+		Transaction transaction = session.beginTransaction();
+		BirdsEntity entity = new BirdsEntity();
+		entity = (BirdsEntity) session.get(BirdsEntity.class, id);
+		entity.setName(name);
+		session.update(entity);
 		session.getTransaction().commit();
 		System.out.println("updated name : " + name);
 		session.close();
@@ -54,10 +54,10 @@ public class BirdsDAOimpl implements BirdsDAO {
 	public void deleteById(int id) {
 		SessionFactory factory = SessionFactoryUtil.getFactory();
 		Session session = factory.openSession();
-		Transaction tr = session.beginTransaction();
-		BirdsEntity dto = new BirdsEntity();
-		dto = (BirdsEntity) session.get(BirdsEntity.class, id);
-		session.delete(dto);
+		Transaction transaction = session.beginTransaction();
+		BirdsEntity entity = new BirdsEntity();
+		entity = (BirdsEntity) session.get(BirdsEntity.class, id);
+		session.delete(entity);
 		session.getTransaction();
 		System.out.println("deleted :" +id);
 		session.close();
