@@ -73,7 +73,7 @@ public class MobileDAOimpl implements MobileDAO{
 		Session session=null;
 			try {
 				session=factory.openSession();
-				Query query = session.createQuery(" select sum(price) from MobileEntity ");
+				Query query = session.getNamedQuery("readTotalPrice");
 				Object obj = query.uniqueResult();
 				if(obj!=null) {
 					Double totalprice = (Double) obj;

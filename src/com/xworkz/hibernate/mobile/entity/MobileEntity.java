@@ -1,15 +1,20 @@
 package com.xworkz.hibernate.mobile.entity;
 import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+
 
 @Entity
 @Table(name = "mobile")
+@NamedQuery(name = "realAllRecords", query = "from MobileEntity")
+@NamedQuery(name = "readMobilePriceByName", query = "select price from MobileEntity where name=:Name")
+@NamedQuery(name = "readTotalPrice", query = "select sum(price) from MobileEntity")
+
 public class MobileEntity implements Serializable{
 	
 	@Column(name="m_id")

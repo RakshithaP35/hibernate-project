@@ -9,7 +9,6 @@
 		<property name="hibernate.connection.username">root</property>
 		<property name="hibernate.connection.password">rakshitha3518</property>
 		<property name="hibernate.show_sql">true</property>
-		<property name="format_sql">true</property>	
 		<mapping class = "com.xworkz.hibernate.mobile.entity.MobileEntity"/>
 		
 	</session-factory>
